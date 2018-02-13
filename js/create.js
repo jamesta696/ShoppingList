@@ -13,8 +13,8 @@ var shoppingList;
 
 
 function initialize(){
-    fetchBookmarks ();//this will populate the glabal shoppingList[] array on load.
-    renderBookmarks();//immediately after, render the UI.
+    fetchProducts ();//this will populate the glabal shoppingList[] array on load.
+    renderProducts();//immediately after, render the UI.
 }
 
 function generateID(){
@@ -25,7 +25,7 @@ function saveList(e){
     localStorage.setItem('shoppingList', JSON.stringify(shoppingList));
          var itemList = {
              name : productName.value,
-             url  : productPrice.value,
+             price  : productPrice.value,
              id: generateID()
          };
      
@@ -33,7 +33,7 @@ function saveList(e){
     localStorage.setItem('shoppingList', JSON.stringify(shoppingList)); //now override storage with whatever is in global array.
 
          clearForm();
-         renderBookmarks(); //render UI right after saving.
+         renderProducts(); //render UI right after saving.
          e.preventDefault();//prevents form from submitting to backend.
 }
 
@@ -44,19 +44,19 @@ function clearForm(){
  
 
 // Fetch Bookmarks
-function fetchBookmarks(){
+function fetchProducts(){
     shoppingList = JSON.parse(localStorage.getItem('shoppingList'))||[];
 }
 
 
-function renderBookmarks(){
+function renderProducts(){
     var itemListResults = document.querySelector('#shoppingListResults');
 
     itemListResults.innerHTML = '';
     for(var i = 0; i < shoppingList.length; i++){
         var itemList = shoppingList[i];
         itemListResults.innerHTML += '<div class="well">'+
-                                        '<h3><a href="' + itemList.url + '" id="' + itemList.id + '">' + itemList.name + '</a></h3>'+
+                                        '<h3>' + itemList.name + " " + itemList.price + '</h3>'+
                                      '</div>';         
     }
 }

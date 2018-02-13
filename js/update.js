@@ -9,12 +9,9 @@ var id;
 var shoppingList;
 
 
-
-
-
 function initialize(){
     fetchProducts ();//this will populate the glabal shoppingList[] array on load.
-    renderBookmarks();//immediately after, render the UI.
+    renderProducts();//immediately after, render the UI.
     wireupListeners();
 }
 
@@ -28,10 +25,10 @@ function saveList(e){
             var itemList = shoppingList[i];
             var oldname = itemList.name;
             itemList.name = productName.value;
-            itemList.url = productPrice.value;
+            itemList.price = productPrice.value;
             var newname = itemList.name;
             localStorage.setItem('shoppingList', JSON.stringify(shoppingList));
-            renderBookmarks();
+            renderProducts();
             alert("Changes Saved From " +oldname+ " to " +newname);
             break;
         }
@@ -76,19 +73,19 @@ function editProduct(id){
 
 function populateForm(itemList){
     productName.value = itemList.name;
-    productPrice.value = itemList.url;
+    productPrice.value = itemList.price;
     id = itemList.id;
 }
 
 
-function renderBookmarks(){
+function renderProducts(){
     var itemListResults = document.querySelector('#shoppingListResults');  
 
     itemListResults.innerHTML = '';
     for(var i = 0; i < shoppingList.length; i++){
         var itemList = shoppingList[i];
         itemListResults.innerHTML += '<div class="well">'+
-                                        '<h3><a href="' + itemList.url + '">' + itemList.name + '</a><span class="edit-button fa fa-edit" id="' + itemList.id + '"></span</h3>'+
+                                        '<h3><a href="' + itemList.price + '">' + itemList.name + '</a><span class="edit-button fa fa-edit" id="' + itemList.id + '"></span</h3>'+
                                      '</div>';         
     }
 

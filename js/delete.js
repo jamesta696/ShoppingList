@@ -2,12 +2,9 @@
 /*var clearBtn = document.querySelector("#clearBtn");
     clearBtn.addEventListener('click', clearBookmarks, false);*/
 
-
-
-
 var shoppingList;
 
-function initialize(){
+function initialize() {
     fetchProducts ();//this will populate the glabal shoppingList[] array on load.
     renderProducts();//immediately after, render the UI.
     wireupListeners();
@@ -41,8 +38,6 @@ function clickHandler(e){
 }
 
 
-
-
 function wireupListeners(){
     var itemListResults = document.querySelector('#shoppingListResults');
     itemListResults.addEventListener("click", clickHandler, false)
@@ -60,10 +55,10 @@ function renderProducts(){
     var itemListResults = document.querySelector('#shoppingListResults');
 
     itemListResults.innerHTML = '';
-    for(var i = 0; i < shoppingList.length; i++){
+    for(var i = 0; i <= shoppingList.length-1; i++){
         var itemList = shoppingList[i];
         itemListResults.innerHTML += '<div class="well">'+
-                                        '<h3><a href="' + itemList.url + '">' + itemList.name + '</a><span class="btn-primary delete-button" id="' + itemList.id + '">X</span</h3>'+
+                                        '<h3>' + itemList.name + " " + itemList.price + '<i class="fa fa-trash btn-primary delete-button" id="' + itemList.id + '"></i></h3>'+
                                      '</div>';         
     }
 
