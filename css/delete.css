@@ -1,0 +1,7 @@
+.btn-primary.delete-button {
+    padding: 3px;
+    box-sizing: border-box;
+    height: 100%;
+    float: right;
+    cursor: pointer;
+}
