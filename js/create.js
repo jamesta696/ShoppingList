@@ -26,7 +26,7 @@ function saveList(e){
     localStorage.setItem('shoppingList', JSON.stringify(shoppingList));
          var itemList = {
              name : productName.value,
-             price  : productPrice.value,
+             price  : parseFloat(productPrice.value),
              id: generateID()
          };
      
