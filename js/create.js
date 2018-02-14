@@ -46,10 +46,9 @@ function totalSum(shoppingList) {
     
     for(var i = 0; i <= shoppingList.length-1; i++) {
         //productsTotal = productsTotal + shoppingList[i];
-        productsTotal = shoppingList[i].value;
+        productsTotal += shoppingList[i];
     }
-    listTotal.innerHTML += "Shopping List Total: $" + productsTotal.value;
-    
+    listTotal.innerHTML = "Shopping List Total: $" + productsTotal;
 }
 
 
