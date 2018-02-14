@@ -2,6 +2,7 @@ var form = document.querySelector('#myForm');
     form = document.addEventListener('submit', saveList, false);
 var productName = document.querySelector('#itemName');
 var productPrice  = document.querySelector('#itemPrice');
+var listTotal = document.querySelector('#total');
 
 /*var clearBtn = document.querySelector("#clearBtn");
     clearBtn.addEventListener('click', clearBookmarks, false);*/
@@ -30,12 +31,28 @@ function saveList(e){
          };
      
     shoppingList.push(itemList);//add to global array
+    
     localStorage.setItem('shoppingList', JSON.stringify(shoppingList)); //now override storage with whatever is in global array.
-
+         
          clearForm();
          renderProducts(); //render UI right after saving.
+         totalSum(shoppingList);
          e.preventDefault();//prevents form from submitting to backend.
 }
+
+function totalSum(shoppingList) {
+    listTotal.innerHTML ='';
+    var productsTotal = 0;
+    
+    for(var i = 0; i <= shoppingList.length-1; i++) {
+        //productsTotal = productsTotal + shoppingList[i];
+        productsTotal = shoppingList[i].value;
+    }
+    listTotal.innerHTML += "Shopping List Total: $" + productsTotal.value;
+    
+}
+
+
 
 function clearForm(){
     productName.value = '';
