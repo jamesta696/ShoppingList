@@ -23,24 +23,31 @@ function generateID(){
 }
 
 function saveList(e){
-    
-    localStorage.setItem('shoppingList', JSON.stringify(shoppingList));
-    
          var itemList = {
              name : productName.value,
              price  : parseFloat(productPrice.value),
              id: generateID()
          };
          
-         if(isValid) {
-            alert("All fields required");
+         if(isValid()) {
+            var itemList = {
+                name : productName.value,
+                price  : parseFloat(productPrice.value),
+                id: generateID()
+            }; 
+            shoppingList.push(itemList);//add to global array
+            localStorage.setItem('shoppingList', JSON.stringify(shoppingList)); //now override storage with whatever is in global array.
+            clearForm();        
+            renderProducts(); //render UI right after saving.
+            totalSum(shoppingList);
+         }else{
+             alert("All fields required");
          }
-    shoppingList.push(itemList);//add to global array
 
-    localStorage.setItem('shoppingList', JSON.stringify(shoppingList)); //now override storage with whatever is in global array.
+        shoppingList.push(itemList);//add to global array
+        localStorage.setItem('shoppingList', JSON.stringify(shoppingList)); //now override storage with whatever is in global array.
          
-         clearForm();
-         
+         clearForm();       
          renderProducts(); //render UI right after saving.
          totalSum(shoppingList);
          e.preventDefault();//prevents form from submitting to backend.
