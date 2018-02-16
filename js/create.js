@@ -23,22 +23,39 @@ function generateID(){
 }
 
 function saveList(e){
+    
     localStorage.setItem('shoppingList', JSON.stringify(shoppingList));
+    
          var itemList = {
              name : productName.value,
              price  : parseFloat(productPrice.value),
              id: generateID()
          };
-     
+         
+         if(isValid) {
+            alert("All fields required");
+         }
     shoppingList.push(itemList);//add to global array
-    
+
     localStorage.setItem('shoppingList', JSON.stringify(shoppingList)); //now override storage with whatever is in global array.
          
          clearForm();
+         
          renderProducts(); //render UI right after saving.
          totalSum(shoppingList);
          e.preventDefault();//prevents form from submitting to backend.
 }
+
+function isValid() {
+    if(productName.value.length === 0 || productPrice.value.length === 0) {
+        //alert("Fill out all fields");
+        return false;
+        
+    }else {
+        return true;
+    }  
+}   
+
 
 function totalSum(shoppingList) {
     listTotal.innerHTML ='';
